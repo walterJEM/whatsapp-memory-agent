@@ -199,5 +199,3 @@ MIT — úsalo, modifícalo, contribuye.
 5. Abre un Pull Request
 
 ---
-
-*Construido con ❤️ para freelancers en Latinoamérica*
