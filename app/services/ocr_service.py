@@ -1,8 +1,3 @@
-"""
-OCR Service — Extract structured data from receipt/invoice images
-using GPT-4o vision. Much better than Tesseract for Spanish receipts.
-"""
-
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 import json
