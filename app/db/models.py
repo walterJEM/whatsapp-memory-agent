@@ -44,7 +44,7 @@ class Note(Base):
     amount = Column(Float, nullable=True)                # for expenses
     expense_category = Column(String(50), nullable=True) # transporte, comida, etc.
     tags = Column(JSON, default=list)
-    metadata = Column(JSON, default=dict)                # OCR data, etc.
+    extra_data = Column(JSON, default=dict)               # OCR data, etc.
     is_deleted = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.now, index=True)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
