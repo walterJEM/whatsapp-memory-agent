@@ -3,10 +3,10 @@ WhatsApp Memory Agent — Core Agent
 Uses LangChain + GPT-4o-mini + pgvector for semantic memory.
 """
 
-from langchain.agents import AgentExecutor, create_openai_tools_agent
-from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain.schema import SystemMessage
+from langgraph.prebuilt import create_react_agent
+from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import SystemMessage
 from langchain_core.messages import HumanMessage, AIMessage
 
 from app.agent.tools import (
@@ -53,10 +53,9 @@ class MemoryAgent:
         self.note_repo = NoteRepository()
         self.reminder_repo = ReminderRepository()
 
-        self.llm = ChatOpenAI(
-            model="gpt-4o-mini",
+        self.llm = ChatGroq(
+            model="llama-3.1-70b-versatile",
             temperature=0.2,
-            streaming=True,
         )
 
         self.tools = [
@@ -74,14 +73,9 @@ class MemoryAgent:
             MessagesPlaceholder(variable_name="agent_scratchpad"),
         ])
 
-        agent = create_openai_tools_agent(self.llm, self.tools, self.prompt)
-
-        self.executor = AgentExecutor(
-            agent=agent,
-            tools=self.tools,
-            verbose=True,
-            max_iterations=5,
-            handle_parsing_errors=True,
+        self.executor = create_react_agent(
+            self.llm,
+            self.tools,
         )
 
     async def process_message(

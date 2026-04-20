@@ -3,8 +3,8 @@ Agent Tools — LangChain tools that give the agent its capabilities.
 Each tool is a function the LLM can call to interact with the system.
 """
 
-from langchain.tools import StructuredTool
-from langchain_core.tools import BaseTool
+
+from langchain_core.tools import StructuredTool, BaseTool
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
